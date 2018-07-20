@@ -1,5 +1,5 @@
 from marshmallow import Schema, fields
-from flask import Flask
+from flask import Flask, jsonify
 from flask_restbuilder import RestApi
 
 app = Flask(__name__)
@@ -21,10 +21,9 @@ class PetsSchema(Schema):
 @app.route('/pets/')
 @api.route('/pets/')
 def get_pets():
-    return [{
-        'id': 0,
-        'name': 'Muffin'
-    }]
-
-
-
+    return jsonify({
+        'pets': [{
+            'id': 0,
+            'name': 'Muffin'
+        }]
+    })

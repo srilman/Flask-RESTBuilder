@@ -1,1 +1,3 @@
 .idea/
+**/__pycache__
+Flask_RESTBuilder.egg-info/

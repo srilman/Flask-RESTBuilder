@@ -47,13 +47,13 @@ class RestApi(object):
     # -----------------------------------------------------------------------------------
 
     def add_route(self, callback, url):
-        if self._routes[url]:
+        if getattr(self._routes, url, None):
             raise KeyError('Trying to Map Two Route Handlers to One Path')
 
         self._routes[url] = callback
 
     def add_schema(self, schema, name):
-        if self._schemas[name]:
+        if getattr(self._schemas, name, None):
             raise KeyError('Trying to Map Two Route Handlers to One Path')
 
         self._schemas[name] = schema
