@@ -18,8 +18,8 @@ class PetsSchema(Schema):
     pets = fields.Nested(PetSchema, required=True, many=True)
 
 
-@app.route('/pets/')
 @api.route('/pets/')
+@app.route('/pets/')
 def get_pets():
     return jsonify({
         'pets': [{
@@ -27,3 +27,9 @@ def get_pets():
             'name': 'Muffin'
         }]
     })
+
+
+if __name__ == '__main__':
+    # spec = api.generate_spec()
+    # print(spec.to_yaml())
+    app.run()

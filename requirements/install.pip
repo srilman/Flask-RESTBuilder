@@ -1,2 +1,4 @@
 Flask>=0.8
 marshmallow>=2.0.0
+PyYAML>=3.13
+apispec>=0.39.0

@@ -1,0 +1,10 @@
+{
+  "name": "flask-restbuilder",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "srilman <srinulade1@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "swagger-ui-dist": "^3.17.5"
+  }
+}
