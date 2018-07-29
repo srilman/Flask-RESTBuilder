@@ -9,7 +9,7 @@ api = RestApi(app)
 # Marshmallow Schemas
 @api.schema(name='Pet')
 class PetSchema(Schema):
-    id = fields.Int()
+    id = fields.Integer()
     name = fields.String(required=True)
 
 
@@ -19,14 +19,28 @@ class PetsSchema(Schema):
 
 
 @api.route('/pets/')
-@app.route('/pets/')
 def get_pets():
+    """A cute furry animal endpoint.
+    ---
+    get:
+        tags: [pet]
+        description: Get a random pet
+        responses:
+            200:
+                description: A pet to be returned
+                schema: PetsSchema
+    """
     return jsonify({
         'pets': [{
             'id': 0,
             'name': 'Muffin'
         }]
     })
+
+
+@app.route('/')
+def index():
+    return 'Hello, world!'
 
 
 if __name__ == '__main__':

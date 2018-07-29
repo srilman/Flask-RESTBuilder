@@ -48,14 +48,8 @@ class RestApi(object):
             static_url_path='/flask-restbuilder/static',
         )
 
-        json_url = self.app.config.get('APISPEC_SWAGGER_URL', '/swagger/')
-        if json_url:
-            spec_blueprint.add_url_rule(json_url, 'swagger-json', self.swagger_json)
-
-        ui_url = self.app.config.get('APISPEC_SWAGGER_UI_URL', '/swagger-ui/')
-        if ui_url:
-            spec_blueprint.add_url_rule(ui_url, 'swagger-ui', self.swagger_ui)
-
+        spec_blueprint.add_url_rule('/swagger/', 'swagger-json', self.swagger_json)
+        spec_blueprint.add_url_rule('/swagger-ui/', 'swagger-ui', self.swagger_ui)
         app.register_blueprint(spec_blueprint)
 
     def _deferred_blueprint_init(self):
@@ -102,9 +96,12 @@ class RestApi(object):
     # -----------------------------------------------------------------------------------
 
     def route(self, url):
+
         def wrapper(callback):
             self.add_route(callback, url)
+            self.app.add_url_rule(url, callback.__name__, callback)
             return callback
+
         return wrapper
 
     def schema(self, name=None):
